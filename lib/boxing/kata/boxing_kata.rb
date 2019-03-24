@@ -1,7 +1,10 @@
 require "boxing/kata/version"
 require "boxing/kata/family"
+require "boxing/kata/box"
+require "boxing/kata/graphics"
 require 'csv'
 require 'gosu'
+require 'date'
 
 module Boxing
   module Kata
@@ -14,10 +17,12 @@ module Boxing
       # if we have an input file, we read in the CSV and store it in a CSV::Table object
       table = CSV.parse(STDIN, headers: true)
       brushes = Hash.new
-      #contractStart = ''
+      date = Date.new
 
       table.each do |row|
-        #if row['contract_effective_date']
+        if row['contract_effective_date']
+          date = Date.parse(row['contract_effective_date'])
+        end
 
         if brushes.has_key?("#{row['brush_color']}")
           brushes["#{row['brush_color']}"] += 1
@@ -32,14 +37,3 @@ module Boxing
     end
   end
 end
-
-#class MyWindow < Gosu::Window
-#  def initialize
-#    super 640, 480
-#    self.caption = 'Hello World!'
-#  end
-#end
-
-#window = MyWindow.new
-#window.show
-
