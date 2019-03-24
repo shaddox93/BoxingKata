@@ -10,50 +10,45 @@ RSpec.describe Boxing::Kata do
  # end
 end
 
-=begin
 RSpec.describe Boxing::Kata::Family do
-  #aggregate_failures
   it 'has brush data' do
-    brushTest = Boxing::Kata::Family.new(brushes: {"blue" => 2, "green" => 3}, contractDate: :"2-12-19")
-    raise unless brushTest.brushes.has_key?("blue")
-    raise unless brushTest.brushes.has_key?("green")
-    raise unless brushTest.brushes.has_value?(2)
-    raise unless brushTest.brushes.has_value?(3)
+    brushTest = Boxing::Kata::Family.new({"blue" => 2, "green" => 3}, "2-12-19")
+    expect(brushTest.brushes.has_key?("blue")).to eq(true)
   end
 
   it 'has a contract start date' do
-    raise unless Boxing::Kata::Family.new(brushes: {"blue" => 2, "green" => 3}, contractDate: :"2-12-19").contractDate == :"2-12-19"
+    brushTest = Boxing::Kata::Family.new({"blue" => 2, "green" => 3}, "2-12-19")
+    expect(brushTest.contractDate).not_to be nil
   end
 end
-=end
+
 RSpec.describe Boxing::Kata::Box do
-  def box(params = {})
-    defaults = {
-      brushCount: :brushCount,
-      boxContents: :boxContents,
-    }
-
-    box.new(**defaults.merge(params))
-  end
-
   it 'has brush count' do
-  end
+    boxTest = Boxing::Kata::Box.new(4)
+    expect(boxTest.brushCount).to eq(0)
 
-  it 'has brushes' do
+    boxTest.add("green")
+    boxTest.add("green")
+    expect(boxTest.brushCount).to eq(2)
   end
 
   it 'when adding a brush to the box' do
-  end
-
-  it 'when printing a full box' do
-  end
-
-  it 'when printing a partial box' do
+    boxTest = Boxing::Kata::Box.new(2)
+    boxTest.add("pink")
+    expect(boxTest.boxContents.has_key?("pink")).to eq(true)
   end
 
   it '.full?' do
+    boxTest = Boxing::Kata::Box.new(2)
+    expect(boxTest.full?).to eq(false)
+
+    boxTest.add("blue")
+    boxTest.add("green")
+    expect(boxTest.full?).to eq(true)
   end
 
   it '.notEmpty?' do
+    boxTest = Boxing::Kata::Box.new(2)
+    expect(boxTest.notEmpty?).to eq(false)
   end
 end
