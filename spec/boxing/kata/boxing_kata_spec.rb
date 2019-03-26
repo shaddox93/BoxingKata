@@ -25,14 +25,17 @@ end
 RSpec.describe Boxing::Kata::Box do
   it 'has brush count' do
     boxTest = Boxing::Kata::Box.new(4)
-    expect(boxTest.brushCount).to eq(0)
-
     boxTest.add("green")
     boxTest.add("green")
     expect(boxTest.brushCount).to eq(2)
   end
 
-  it 'when adding a brush to the box' do
+  it 'does not have a brush count' do
+    boxTest = Boxing::Kata::Box.new(4)
+    expect(boxTest.brushCount).to eq(0)
+  end
+
+  it 'adds a brush to the box' do
     boxTest = Boxing::Kata::Box.new(2)
     boxTest.add("pink")
     expect(boxTest.boxContents.has_key?("pink")).to eq(true)
@@ -50,5 +53,16 @@ RSpec.describe Boxing::Kata::Box do
   it '.notEmpty?' do
     boxTest = Boxing::Kata::Box.new(2)
     expect(boxTest.notEmpty?).to eq(false)
+  end
+
+  it 'calculates the weight' do
+    boxTest = Boxing::Kata::Box.new(2)
+    expect(boxTest.calcWeight(1)).to eq(17.6)
+  end
+
+  it 'calculates the shipping' do
+    boxTest = Boxing::Kata::Box.new(2)
+    boxTest.calcWeight(1)
+    expect(boxTest.calcShipping).to eq("Shipping: Priority")
   end
 end
