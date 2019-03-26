@@ -2,6 +2,14 @@ module Boxing
   module Kata
     class Family
 
+       #----------------------------------------------------#
+      # Family Class: a new family object for each family read
+      # in from the csv
+      #
+      # Has instance variables: brushes, contractDate, and
+      # startBoxFlag 
+      #----------------------------------------------------#
+
       attr_reader(
         :brushes,
         :contractDate
@@ -10,7 +18,7 @@ module Boxing
       def initialize(brushes, contractDate)
         @brushes = brushes
         @contractDate = contractDate
-        @startBoxFlag = 1
+        @startBoxFlag = 0
       end
 
       def fill_order(buttonClickType)
@@ -21,13 +29,13 @@ module Boxing
         boxSize = 0
         if buttonClickType == "start"
           if @brushes.empty?
-            return puts "enter family data"
+            return puts "NO STARTER BOXES GENERATED"
           end
           boxSize = 2
           @startBoxFlag = 1
         else
           if @startBoxFlag != 1 #if we haven't created a starter box yet
-            return puts "please generate a starter box first"
+            return puts "PLEASE GENERATE STARTER BOXES FIRST"
           end
           boxSize = 4
         end
