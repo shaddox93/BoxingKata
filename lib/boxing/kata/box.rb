@@ -50,11 +50,9 @@ module Boxing
       def calcShipping
         # 16oz is the min weight a box can have to be priority
         if @weight > 16
-          puts "Shipping: Priority"
-          #Priority Shipping
+          return "Shipping: Priority"
         else
-          #First Class Shipping
-          puts "Shipping: First"
+          return "Shipping: First"
         end
       end
 
@@ -89,14 +87,14 @@ module Boxing
         # correct values
 
         if @boxType == "Starter"
-          puts "Starter Box"
+          puts "STARTER BOX"
           @boxContents.each do |key, value|  
             puts "#{value} #{key} brushes"
             puts "#{value} #{key} replacement heads"
             calcWeight(value)
           end
         else
-          puts "Refill Box"
+          puts "REFILL BOX"
           @boxContents.each do |key, value|  
             puts "#{value} #{key} replacement heads"
             calcWeight(value)
