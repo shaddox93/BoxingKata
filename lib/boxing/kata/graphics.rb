@@ -20,7 +20,7 @@ module Boxing
 
         @famData = famData # used to access family class
         @button_font = Gosu::Font.new(18, name:"Roboto")
-        @beam_image = Gosu::Image.new("img/ext.jpg")
+        @beam_image = Gosu::Image.new("img/beam.jpg")
         @header_font = Gosu::Font.new(25, name:"Roboto")
       end
 
