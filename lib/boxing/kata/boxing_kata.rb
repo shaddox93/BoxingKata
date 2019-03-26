@@ -11,7 +11,7 @@ module Boxing
 
     def self.report
       unless has_input_file?
-        puts "Usage: ruby ./bin/boxing-kata <spec/fixtures/family_preferences.csv"
+        return puts "Usage: ruby ./bin/boxing-kata <spec/fixtures/family_preferences.csv"
       end
       
       # if we have an input file, we read in the CSV and store it in a CSV::Table object
